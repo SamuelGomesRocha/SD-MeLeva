@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="2c38fe65-d3e3-47e3-a0b7-1d3c3e5ca1a2" activeEnvironment="Default" name="ParceiroAcomodacao" resourceRoot="" soapui-version="5.7.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="05730977-e4e8-46fc-9de2-762a46af15da" wsaVersion="NONE" name="ParceiroAcomodacaoSOAP" type="wsdl" bindingName="{http://www.example.org/ParceiroAcomodacao/}ParceiroAcomodacaoSOAP" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/samuh/Documents/SistemasDistribuídos/ContratoParceiro/ParceiroAcomodacao.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\samuh\Documents\SistemasDistribuídos\ContratoParceiro\ParceiroAcomodacao.wsdl"><con:part><con:url>file:\C:\Users\samuh\Documents\SistemasDistribuídos\ContratoParceiro\ParceiroAcomodacao.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ParceiroAcomodacao" targetNamespace="http://www.example.org/ParceiroAcomodacao/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/ParceiroAcomodacao/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.example.org/hotel">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/ParceiroAcomodacao/">
+      <xsd:element name="Buscar">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="BuscarResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://www.example.org/hotel" schemaLocation="../bin/hotel.xsd"></xsd:import>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BuscarRequest">
+    <wsdl:part element="xsd1:HotelInput" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BuscarResponse">
+    <wsdl:part element="xsd1:HotelOutput" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ParceiroAcomodacao">
+    <wsdl:operation name="Buscar">
+      <wsdl:input message="tns:BuscarRequest"/>
+      <wsdl:output message="tns:BuscarResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ParceiroAcomodacaoSOAP" type="tns:ParceiroAcomodacao">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Buscar">
+      <soap:operation soapAction="http://www.example.org/ParceiroAcomodacao/Buscar"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ParceiroAcomodacao">
+    <wsdl:port binding="tns:ParceiroAcomodacaoSOAP" name="ParceiroAcomodacaoSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\samuh\Documents\SistemasDistribuídos\bin\hotel.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://www.example.org/hotel" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/hotel">
+  <complexType name="HotelQuery">
+    <sequence>
+      <element name="cidadeId" type="int"/>
+      <element name="dataInicial" type="date"/>
+      <element name="dataFinal" type="date"/>
+    </sequence>
+  </complexType>
+  <complexType name="Hotel">
+    <sequence>
+      <element name="nome" type="string"/>
+      <element name="endComercial" type="tns:Endereco"/>
+    </sequence>
+  </complexType>
+  <complexType name="HotelList">
+    <sequence>
+      <element name="hotel" type="tns:Hotel" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="Endereco">
+    <sequence>
+      <element name="logradouro" type="string"/>
+      <element name="bairro" type="string"/>
+      <element name="numero" type="int"/>
+      <element name="complemento" type="string"/>
+      <element name="cidade" type="string"/>
+      <element name="estado">
+        <simpleType>
+          <annotation>
+            <documentation>Relação dos Estados do Endereço.</documentation>
+          </annotation>
+          <restriction base="string">
+            <enumeration value="SC"/>
+            <enumeration value="PR"/>
+            <enumeration value="RS"/>
+            <enumeration value="SP"/>
+            <enumeration value="MS"/>
+            <enumeration value="MT"/>
+            <enumeration value="MG"/>
+            <enumeration value="RJ"/>
+            <enumeration value="ES"/>
+            <enumeration value="BA"/>
+            <enumeration value="PE"/>
+            <enumeration value="AC"/>
+            <enumeration value="AP"/>
+            <enumeration value="AM"/>
+            <enumeration value="DF"/>
+            <enumeration value="GO"/>
+            <enumeration value="PI"/>
+            <enumeration value="PA"/>
+            <enumeration value="RO"/>
+            <enumeration value="RR"/>
+            <enumeration value="TO"/>
+            <enumeration value="AL"/>
+            <enumeration value="CE"/>
+            <enumeration value="PB"/>
+            <enumeration value="RN"/>
+            <enumeration value="SE"/>
+          </restriction>
+        </simpleType>
+      </element>
+      <element name="cep" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="HotelInput" type="tns:HotelQuery"/>
+  <element name="HotelOutput" type="tns:HotelList"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://DESKTOP-FH7U57P:8088/mockParceiroAcomodacaoSOAP</con:endpoint><con:endpoint>http://www.example.org/</con:endpoint></con:endpoints><con:operation id="38550319-8ef3-40f3-9f39-b9a9b1fbd86b" isOneWay="false" action="http://www.example.org/ParceiroAcomodacao/Buscar" name="Buscar" bindingOperationName="Buscar" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ad5956ba-dfe8-4346-b919-08c9fa92e3c4" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://DESKTOP-FH7U57P:8088/mockParceiroAcomodacaoSOAP</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hot="http://www.example.org/hotel">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <hot:HotelInput>\r
+         <hot:cidadeId>1</hot:cidadeId>\r
+         <hot:dataInicial>2022-02-09</hot:dataInicial>\r
+         <hot:dataFinal>2022-06-06</hot:dataFinal>\r
+      </hot:HotelInput>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/ParceiroAcomodacao/Buscar"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="69d15cce-f412-4427-a771-e0b5989cbbc6" port="8088" path="/mockParceiroAcomodacaoSOAP" host="DESKTOP-FH7U57P" name="ParceiroAcomodacaoSOAP MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="Buscar" id="6f78493c-c8af-4d12-b1c7-d2932281e79d" interface="ParceiroAcomodacaoSOAP" operation="Buscar"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="cf864e8b-63bd-49ae-a9db-9bed41dce48d" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hot="http://www.example.org/hotel">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hot:HotelOutput>
+         <!--Zero or more repetitions:-->
+         <hot:hotel>
+            <hot:nome>HOTEL GOIANIRA</hot:nome>
+            <hot:endComercial>
+               <hot:logradouro>Rua A</hot:logradouro>
+               <hot:bairro>St. A</hot:bairro>
+               <hot:numero>0</hot:numero>
+               <hot:complemento>Qd. A</hot:complemento>
+               <hot:cidade>Vila A</hot:cidade>
+               <hot:estado>UF A</hot:estado>
+               <hot:cep>5555555</hot:cep>
+            </hot:endComercial>
+         </hot:hotel>
+      </hot:HotelOutput>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.example.org/ParceiroAcomodacao/Buscar"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

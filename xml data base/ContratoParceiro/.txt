@@ -1,0 +1,79 @@
+
+  Click nbfsnbhostSystemFileSystemTemplatesLicenseslicense-default.txt to change this license
+  Click nbfsnbhostSystemFileSystemTemplatesWebServicesGenericResource.java to edit this template
+ 
+package br.edu.ifg.backend;
+
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PUT;
+import javax.ws.rs.core.MediaType;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import org.example.parceiroacomodacao.;
+import org.example.hotel.;
+
+
+  REST Web Service
+ 
+  @author samuh
+ 
+@Path(hoteis)
+public class GenericResource {
+
+    @Context
+    private UriInfo context;
+
+    
+      Creates a new instance of GenericResource
+     
+    public GenericResource() {
+    }
+
+    
+      Retrieves representation of an instance of br.edu.ifg.backend.GenericResource
+      @return an instance of java.lang.String
+     
+    @GET
+    @Produces(MediaType.APPLICATION_XML)
+    public String getHoteisXml() throws DatatypeConfigurationException, Exception {
+        
+        try{
+            HotelQuery objInput = new HotelQuery(
+                1,
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(2021-10-12),
+                DatatypeFactory.newInstance().newXMLGregorianCalendar(2022-10-12)  
+            );
+            HotelList lista = buscar(objInput);
+            String resp = hotels;
+            for(Hotel h  lista.getHotel()){
+                resp += hotel;
+                resp += name+ h.getNome() +name;
+                resp += address+ h.getEndComercial().getLogradouro()+, +h.getEndComercial().getNumero()+address;
+                resp += hotel;
+            }
+            resp += hotels;
+            return resp;
+        }catch(Exception e){
+            throw new Exception(Erro no método de busca de hotéis!  + e.getMessage());
+        }
+        
+        
+        return Falha!;
+    }
+
+  
+    
+
+    private static HotelList buscar(HotelQuery parameters){
+        ParceiroAcomodacao_Service service = new ParceiroAcomodacao_Service();
+        ParceiroAcomodacao port = service.getParceiroAcomodacaoSOAP();
+        return port.buscar(parameters);
+    }
+
+    
+}

@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, Response as resp
+from flask import Flask, request as req, redirect, url_for, Response as resp
 import json
 import sys
 import xml
@@ -17,12 +17,12 @@ CORS(app)
 
 @app.route('/hoteis/xml', methods = ['GET'])
 def getXMLOfHoteis():
-    return hs.obtemHoteisJSON(1, "2022-02-09", "2022-06-06")
+    return hs.obtemHoteisXML(1, "2022-02-09", "2022-06-06")
 
 
-@app.route('/hoteis/json', methods = ['GET'])
+@app.route('/hoteis/json', methods = ['POST'])
 def getJSONOfHoteis():
-    return hs.obtemHoteisJSON(1, "2022-02-09", "2022-06-06")
+    return hs.obtemHoteisJSON(req.json['id'], req.json['data-inicial'], req.json['data-final'])
 
 
 
